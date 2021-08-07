@@ -46,7 +46,7 @@ router.get("/workouts/range", async (req, res) => {
 //POST Requests...
 router.post("/workouts", ({ body }, res) => {
     const workout = new Workout(body);
-    workout.totalTime();
+    workout.workoutDuration();
 
     Workout.create(workout)
         .then(dbWorkout => {
