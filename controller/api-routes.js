@@ -67,7 +67,6 @@ router.post("/workouts", ({
   body
 }, res) => {
   const workout = new Workout(body);
-  workout.workoutDuration();
 
   Workout.create(workout)
     .then(dbWorkout => {

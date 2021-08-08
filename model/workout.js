@@ -35,19 +35,20 @@ const workoutSchema = new Schema({
       type: Number
     }
   }],
-  totalDuration: {
-    type: Number,
-    default: 0,
-  },
+},
+{ //lets us add virtual propeties
+  toJson: {
+    virtuals: true,
+  }
 });
 
-//custom method to return total time spent workingout...
-workoutSchema.methods.workoutDuration = function() {
-  for (let i = 0; i < this.exercises.length; i++) {
-    this.totalDuration += this.exercises[i].duration;
-  }
-  return this.totalDuration;
-}
+//dynamic propeties fro schema...
+workoutSchema.virual("totalDuration").get(function() {
+  return this.exercises.reduce((total, exercise) => {
+    return total + exercise.duration;
+  }, 0);
+});
+
 const Workout = mongoose.model("Workout", workoutSchema);
 
 module.exports = Workout;
