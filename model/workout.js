@@ -29,26 +29,24 @@ const workoutSchema = new Schema({
       type: Number,
     },
     duration: {
-        type: Number,
-      },
+      type: Number,
+    },
     distance: {
-        type: Number
-      }
-    }],
+      type: Number
+    }
+  }],
   totalDuration: {
-        type: Number,
-        default: 0,
+    type: Number,
+    default: 0,
   },
 });
 
 //custom method to return total time spent workingout...
-
-workoutSchema.methods.workoutDuration = function () {
-  for (let i = 0; i < this.exercises.length; i++)
-    {
-        this.totalDuration += this.exercises[i].duration;
-    }
-    return this.totalDuration;
+workoutSchema.methods.workoutDuration = function() {
+  for (let i = 0; i < this.exercises.length; i++) {
+    this.totalDuration += this.exercises[i].duration;
+  }
+  return this.totalDuration;
 }
 const Workout = mongoose.model("Workout", workoutSchema);
 
