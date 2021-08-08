@@ -16,4 +16,4 @@ Once you chose, you will be presented a forum to fill out on your new exercise.
 The dashboard option will present you data on your past logged workouts.
  ![alt text](img/dashboard.png)
 ## Deploy
-![Heroku Deployment](https://serene-plains-29080.herokuapp.com/)
+[Heroku Deployment](https://serene-plains-29080.herokuapp.com/)
