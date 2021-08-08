@@ -37,7 +37,7 @@ const workoutSchema = new Schema({
   }],
 },
 { //lets us add virtual propeties
-  toJson: {
+  toJSON: {
     virtuals: true
   }
 });
