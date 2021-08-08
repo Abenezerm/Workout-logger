@@ -18,46 +18,13 @@ router.get("/workouts", (req, res) => {
 });
 
 router.get("/workouts/range", async (req, res) => {
-  Workout.aggregate([{
-        $unwind: "$exercises"
-      },
-      {
-        $group: {
-          _id: "$day",
-          day: {
-            $push: {
-              $max: "$day"
-            }
-          },
-          totalDuration: {
-            $sum: "$exercises.duration"
-          },
-          totalWeight: {
-            $sum: "$exercises.weight"
-          }
-        }
-      },
-      {
-        $sort: {
-          _id: -1
-        }
-      },
-      {
-        $limit: 7
-      },
-      {
-        $sort: {
-          _id: 1
-        }
-      },
-    ])
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(400).json(err);
-    });
+  Workout.find({}).limit(7)
+		.then((dbWorkouts) => {
+			res.json(dbWorkouts);
+		})
+		.catch((err) => {
+			res.json(err);
+		});
 })
 
 
@@ -77,17 +44,7 @@ router.post("/workouts", ({
     });
 });
 
-router.post("/workouts/bulk", ({
-  body
-}, res) => {
-  Workout.insertMany(body)
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
+
 
 
 //PUT Requests...

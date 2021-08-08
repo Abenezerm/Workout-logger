@@ -38,15 +38,15 @@ const workoutSchema = new Schema({
 },
 { //lets us add virtual propeties
   toJson: {
-    virtuals: true,
+    virtuals: true
   }
 });
 
 //dynamic propeties fro schema...
-workoutSchema.virtual("totalDuration").get(function() {
-  return this.exercises.reduce((total, exercise) => {
-    return total + exercise.duration;
-  }, 0);
+WorkoutSchema.virtual('totalDuration').get(function () {
+    return this.exercises.reduce((total, exercise) => {
+        return total + exercise.duration;
+    }, 0);
 });
 
 const Workout = mongoose.model("Workout", workoutSchema);
