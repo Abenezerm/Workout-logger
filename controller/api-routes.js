@@ -108,4 +108,4 @@ router.put("/workouts/:id", (req, res) => {
     });
 });
 
-module.exposts = router;
+module.exports = router;
